@@ -35,7 +35,7 @@ const AuthSlice = createSlice({
         },
         setSecretInfo(state, action) {
             state.secretInfo = action.payload
-        }
+        },
     },
 })
 

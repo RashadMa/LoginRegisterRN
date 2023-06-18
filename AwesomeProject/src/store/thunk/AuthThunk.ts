@@ -40,7 +40,23 @@ export const ConfirmUser = (payload: User) => {
   };
 };
 
-export const getMe = () => {
+export const Login = (payload: User) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(setLoading(true));
+      const authPost = await axios.post("http://localhost:8080/api/login", {
+        email: payload.email,
+      });
+      dispatch(setToken(authPost.data.token));
+      return authPost.data;
+    } catch (error) {
+      console.log('login error', error);
+    }
+    dispatch(setLoading(false));
+  };
+}
+
+export const getUsers = () => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     try {
       const {token} = getState().authSlice;

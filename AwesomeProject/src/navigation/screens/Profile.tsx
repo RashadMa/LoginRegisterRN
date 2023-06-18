@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
-import { getMe } from '../../store/thunk/AuthThunk';
+import { getUsers } from '../../store/thunk/AuthThunk';
 
 const ProfileScreen = () => {
     const secretInfo = useSelector((state: RootState) => state.authSlice.secretInfo)
     const dispatch = useDispatch<AppDispatch>()
     useEffect(() => {
-        dispatch(getMe())
+        dispatch(getUsers())
     }, [])
 
     return (
